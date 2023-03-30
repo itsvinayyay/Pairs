@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'TourScreen_Body.dart';
+
 class Tour_Screen extends StatelessWidget {
   const Tour_Screen({Key? key}) : super(key: key);
 
@@ -7,8 +9,16 @@ class Tour_Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          leading: Icon(
+            Icons.more_horiz_rounded,
+            size: 40,
+          ),
+        ),
+        body: Body(),
+      ),
     );
   }
 }

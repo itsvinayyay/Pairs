@@ -11,7 +11,25 @@ class Pairs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Tour_Screen(),
+      theme: ThemeData(
+        scaffoldBackgroundColor: Color(0xFFDDDCDD),
+        fontFamily: "JosefinSans",
+        appBarTheme: AppBarTheme(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          iconTheme: IconThemeData(
+            size: 30,
+            color: Colors.black,
+          ),
+        ),
+        textTheme: TextTheme(
+          bodyLarge: TextStyle(
+            color: Colors.black,
+          )
+        )
+      ),
       routes: {
         Tour_Screen.id: (context) => Tour_Screen(),
       },
