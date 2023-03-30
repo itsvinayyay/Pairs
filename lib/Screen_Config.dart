@@ -16,7 +16,7 @@ class SizeConfiguration {
 
 
 double getproportionatescreenheight(double height) {
-  double Screenheight = SizeConfiguration.screenwidth;
+  double Screenheight = SizeConfiguration.screenheight;
   return (height / 812.0) * Screenheight;
 }
 

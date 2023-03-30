@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Screens/TourScreen/Tour_Screen.dart';
+import 'Screen_Config.dart';
 
 void main() {
   runApp(const Pairs());
