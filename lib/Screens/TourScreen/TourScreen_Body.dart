@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:pairs/Screen_Config.dart';
+import 'package:pairs/Fadein_Transitions.dart';
+import 'package:pairs/Screens/SignInScreen/SignIn_Screen.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -71,7 +73,8 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(
           height: getproportionatescreenheight(400),
@@ -87,23 +90,64 @@ class _BodyState extends State<Body> {
             ],
           ),
         ),
-        Container(
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(20),
+        SizedBox(
+          height: getproportionatescreenheight(100),
+        ),
+        FadeinTransitions(
+          leftP: 40,
+          passedchild: Row(
+            children: [
+              Text(
+                "Pairs...",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 80,
+                  fontFamily: "JosefinSans-italic",
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+              SizedBox(
+                width: getproportionatescreenwidth(20),
+              ),
+              Container(
+                height: getproportionatescreenheight(70),
+                child: AspectRatio(
+                  child: Image.asset("assets/images/logo.png"),
+                  aspectRatio: 1,
+                ),
+              ),
+            ],
           ),
-          height: getproportionatescreenheight(80),
-          width: getproportionatescreenwidth(600),
-          child: Text(
-            "Continue",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 30,
-              fontWeight: FontWeight.w800,
+        ),
+        SizedBox(
+          height: getproportionatescreenheight(30),
+        ),
+        FadeinTransitions(
+          leftP: 50,
+          rightP: 50,
+          passedchild: GestureDetector(
+            onTap: (){
+              Navigator.pushNamed(context, SignInScreen.id);
+            },
+            child: Container(
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              height: getproportionatescreenheight(80),
+              width: getproportionatescreenwidth(650),
+              child: Text(
+                "Continue",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
             ),
           ),
-        )
+        ),
       ],
     );
   }

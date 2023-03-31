@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pairs/Screens/SignInScreen/SignIn_Screen.dart';
 import 'Screens/TourScreen/Tour_Screen.dart';
-import 'Screen_Config.dart';
+
 
 void main() {
   runApp(const Pairs());
@@ -33,6 +34,7 @@ class Pairs extends StatelessWidget {
       ),
       routes: {
         Tour_Screen.id: (context) => Tour_Screen(),
+        SignInScreen.id: (context) => SignInScreen(),
       },
     );
   }
