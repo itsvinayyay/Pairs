@@ -63,6 +63,7 @@ flutter:
      - assets/images/
      - assets/images/logo.png
 
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
@@ -79,10 +80,13 @@ flutter:
        fonts:
          - asset: assets/fonts/JosefinSans-VariableFont_wght.ttf
            style: normal
-           weight: 400
+           weight: 900
      - family: JosefinSans-italic
        fonts:
          - asset: assets/fonts/JosefinSans-Italic-VariableFont_wght.ttf
+     - family: Roboto-Medium
+       fonts:
+          - asset: assets/fonts/Roboto-Medium.ttf
 
   #
   # For details regarding fonts from package dependencies,

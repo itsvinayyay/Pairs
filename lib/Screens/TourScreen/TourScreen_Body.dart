@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pairs/Screen_Config.dart';
 import 'package:pairs/Fadein_Transitions.dart';
 import 'package:pairs/Screens/SignInScreen/SignIn_Screen.dart';
+import 'package:pairs/Common_Button.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -125,30 +126,12 @@ class _BodyState extends State<Body> {
         FadeinTransitions(
           leftP: 50,
           rightP: 50,
-          passedchild: GestureDetector(
-            onTap: (){
-              Navigator.pushNamed(context, SignInScreen.id);
-            },
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              height: getproportionatescreenheight(80),
-              width: getproportionatescreenwidth(650),
-              child: Text(
-                "Continue",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-            ),
-          ),
+          passedchild: buildCommon_button(onpressed: (){
+            Navigator.pushNamed(context, SignInScreen.id);
+          }, content: "Continue",),
         ),
       ],
     );
   }
 }
+

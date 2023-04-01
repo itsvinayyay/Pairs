@@ -13,6 +13,7 @@ class Tour_Screen extends StatelessWidget {
     SizeConfiguration().access(context);
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Body(),
       ),
     );
