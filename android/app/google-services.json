@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "479378886570",
+    "project_id": "pairs-m3301",
+    "storage_bucket": "pairs-m3301.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:479378886570:android:cc2bca7cab8a925952a5d3",
+        "android_client_info": {
+          "package_name": "com.example.pairs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "479378886570-fo383oh5cb00qmmeh03r82b0rp25e6so.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhqlBTS0dVONkYeMjZnoLZ-g5t32CdKkk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "479378886570-fo383oh5cb00qmmeh03r82b0rp25e6so.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
