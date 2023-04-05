@@ -57,3 +57,14 @@ OutlineInputBorder build_OutlineInputBorder() {
       gapPadding: 0,
     );
 }
+
+BoxDecoration build_background() {
+  return BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage("assets/images/back.png"),
+        fit: BoxFit.cover,
+        opacity: 0.4,
+      )
+  );
+}
+

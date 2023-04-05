@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:pairs/Screens/OTPScreen/OTP_Screen.dart';
+import 'package:pairs/Screens/RegistrationScreen/Registration_Screen.dart';
 import 'package:pairs/Screens/SignInScreen/SignIn_Screen.dart';
 import 'package:pairs/Screens/SignUpScreen/SignUp_Screen.dart';
 import 'Screens/TourScreen/Tour_Screen.dart';
 import 'package:pairs/Constants.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  runApp(const Pairs());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(Pairs());
 }
 
 class Pairs extends StatelessWidget {
@@ -21,6 +26,8 @@ class Pairs extends StatelessWidget {
         Tour_Screen.id: (context) => Tour_Screen(),
         SignInScreen.id: (context) => SignInScreen(),
         SignUpScreen.id: (context) => SignUpScreen(),
+        RegistrationScreen.id: (context) => RegistrationScreen(),
+        OTP_Screen.id: (context) => OTP_Screen(),
       },
     );
   }

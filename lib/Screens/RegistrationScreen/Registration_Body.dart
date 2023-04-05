@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pairs/Constants.dart';
 import 'package:pairs/Screen_Config.dart';
-import 'SignUpScreen_Form.dart';
+import 'RegistrationScreen_Form.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -21,32 +21,32 @@ class Body extends StatelessWidget {
               height: getproportionatescreenheight(40),
             ),
             Text(
-              "Hey There!",
+              "Registration Completion",
               style: TextStyle(
                 color: Colors.green,
                 fontWeight: FontWeight.bold,
                 fontSize: 60,
               ),
+              textAlign: TextAlign.center,
             ),
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: getproportionatescreenwidth(10),
               ),
               child: Text(
-                "Register your account or Sign in using Social media handles",
+                "Fill in the below fields in order to complete your registration",
                 style: TextStyle(
-                  color: Colors.green,
-                  fontFamily: "Roboto",
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                ),
+                    color: Colors.green,
+                    fontFamily: "Roboto",
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
             ),
             SizedBox(
               height: getproportionatescreenheight(20),
             ),
-            SignUp_Form(),
+            Registration_Form(),
           ],
         ),
       ),
