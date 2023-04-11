@@ -6,6 +6,7 @@ import '../../Screen_Config.dart';
 import '../OTPScreen/OTP_Screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+
 class Registration_Form extends StatefulWidget {
   const Registration_Form({
     super.key,
@@ -16,7 +17,7 @@ class Registration_Form extends StatefulWidget {
 }
 
 class _Registration_FormState extends State<Registration_Form> {
-  final _firestore = FirebaseFirestore.instance;
+  late final _firestore;
   final _auth = FirebaseAuth.instance;
   User? LoggedInuser;
   late String first_name;
@@ -36,6 +37,7 @@ class _Registration_FormState extends State<Registration_Form> {
       if (user != null) {
         LoggedInuser = user;
         print(LoggedInuser?.email);
+        _firestore = FirebaseFirestore.instance.collection("UserData").doc(LoggedInuser?.uid);
       }
     }
 
@@ -45,6 +47,7 @@ class _Registration_FormState extends State<Registration_Form> {
   }
   @override
   Widget build(BuildContext context) {
+
     return Form(
       child: Column(
         children: [
@@ -94,8 +97,8 @@ class _Registration_FormState extends State<Registration_Form> {
             height: getproportionatescreenheight(40),
           ),
           buildCommon_button(
-            onpressed: () {
-              _firestore.collection('UserData').add({
+            onpressed: () async{
+              await _firestore.set({
                 'First_Name': first_name,
                 'Last_Name': last_name,
                 'Phone': phone,
