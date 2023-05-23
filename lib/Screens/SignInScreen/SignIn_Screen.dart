@@ -12,7 +12,6 @@ class SignInScreen extends StatelessWidget {
         centerTitle: true,
         title: Text(
           "Sign In",
-          style: build_AppBar_style(),
         ),
       ),
       resizeToAvoidBottomInset: false,

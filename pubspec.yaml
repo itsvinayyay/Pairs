@@ -39,6 +39,7 @@ dependencies:
   firebase_core: ^2.9.0
   cloud_firestore: ^4.5.0
   pin_code_fields: ^7.4.0
+  google_nav_bar: ^5.0.6
 
 dev_dependencies:
   flutter_test:
@@ -82,9 +83,10 @@ flutter:
   fonts:
      - family: JosefinSans
        fonts:
-         - asset: assets/fonts/JosefinSans-VariableFont_wght.ttf
-           style: normal
-           weight: 900
+         - asset: assets/fonts/JosefinSans-Light.ttf
+     - family: JosefinSans-Regular
+       fonts:
+             - asset: assets/fonts/JosefinSans-Regular.ttf
      - family: JosefinSans-italic
        fonts:
          - asset: assets/fonts/JosefinSans-Italic-VariableFont_wght.ttf

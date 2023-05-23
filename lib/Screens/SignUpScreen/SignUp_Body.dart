@@ -22,11 +22,7 @@ class Body extends StatelessWidget {
             ),
             Text(
               "Hey There!",
-              style: TextStyle(
-                color: Colors.green,
-                fontWeight: FontWeight.bold,
-                fontSize: 60,
-              ),
+              style: build_Headings(),
             ),
             Padding(
               padding: EdgeInsets.symmetric(

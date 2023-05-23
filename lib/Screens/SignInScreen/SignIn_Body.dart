@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pairs/Constants.dart';
 import 'package:pairs/Screen_Config.dart';
 import 'SignInScreen_Form.dart';
 
@@ -26,11 +27,7 @@ class Body extends StatelessWidget {
             ),
             Text(
               "Welcome!",
-              style: TextStyle(
-                color: Colors.green,
-                fontWeight: FontWeight.bold,
-                fontSize: 60,
-              ),
+              style: build_Headings(),
             ),
             SizedBox(
               height: getproportionatescreenheight(30),

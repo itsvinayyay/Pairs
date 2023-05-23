@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pairs/Bottom_Navigations.dart';
+import 'package:pairs/Screens/CartScreen/Cart_Screen.dart';
+import 'package:pairs/Screens/HomeScreen/Home_Screen.dart';
+import 'package:pairs/Screens/LoginSuccessScreen/Succeess_Screen.dart';
 import 'package:pairs/Screens/OTPScreen/OTP_Screen.dart';
 import 'package:pairs/Screens/RegistrationScreen/Registration_Screen.dart';
 import 'package:pairs/Screens/SignInScreen/SignIn_Screen.dart';
@@ -28,6 +32,10 @@ class Pairs extends StatelessWidget {
         SignUpScreen.id: (context) => SignUpScreen(),
         RegistrationScreen.id: (context) => RegistrationScreen(),
         OTP_Screen.id: (context) => OTP_Screen(),
+        LoginSuccess.id: (context) => LoginSuccess(),
+        Home_Screen.id: (context) => Home_Screen(),
+        Cart_Screen.id: (context) => Cart_Screen(),
+        Bottom_Navigations.id: (context) => Bottom_Navigations(),
       },
     );
   }

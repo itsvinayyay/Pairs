@@ -22,11 +22,7 @@ class Body extends StatelessWidget {
             ),
             Text(
               "Registration Completion",
-              style: TextStyle(
-                color: Colors.green,
-                fontWeight: FontWeight.bold,
-                fontSize: 60,
-              ),
+              style: build_Headings(),
               textAlign: TextAlign.center,
             ),
             Padding(

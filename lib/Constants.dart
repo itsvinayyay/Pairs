@@ -20,6 +20,7 @@ TextStyle build_AppBar_style() {
     color: Colors.green,
     fontWeight: FontWeight.w900,
     fontSize: 25,
+    fontFamily: "JosefinSans",
   );
 }
 
@@ -29,7 +30,7 @@ ThemeData buildThemeData() {
       enabledBorder: build_OutlineInputBorder(),
       focusedBorder: build_OutlineInputBorder(),
     ),
-    scaffoldBackgroundColor: Color(0xFFDDDCDD),
+    scaffoldBackgroundColor: Color(0xFFD9D8DA),
     fontFamily: "JosefinSans",
     appBarTheme: AppBarTheme(
       elevation: 0,
@@ -38,6 +39,7 @@ ThemeData buildThemeData() {
         size: 30,
         color: Colors.black,
       ),
+      titleTextStyle: build_AppBar_style(),
     ),
     textTheme: TextTheme(
       bodyLarge: TextStyle(
@@ -65,6 +67,16 @@ BoxDecoration build_background() {
         fit: BoxFit.cover,
         opacity: 0.4,
       )
+  );
+}
+
+TextStyle build_Headings(){
+  return TextStyle(
+    color: Colors.green,
+    fontWeight: FontWeight.w700,
+    fontSize: 50
+    ,
+    fontFamily: "JosefinSans-Regular",
   );
 }
 

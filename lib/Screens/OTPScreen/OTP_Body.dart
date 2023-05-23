@@ -1,11 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pairs/Common_Button.dart';
 import 'package:pairs/Constants.dart';
 import 'package:pairs/Screen_Config.dart';
+import 'package:pairs/Screens/HomeScreen/Home_Screen.dart';
+import 'package:pairs/Screens/LoginSuccessScreen/Succeess_Screen.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+  final _auth = FirebaseAuth.instance;
+  String PhoneNumber;
+  String verify;
+  Body({required this.PhoneNumber, required this.verify});
+  late String received_OTP;
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +30,7 @@ class Body extends StatelessWidget {
             ),
             Text(
               "Verify your OTP",
-              style: TextStyle(
-                color: Colors.green,
-                fontWeight: FontWeight.bold,
-                fontSize: 50,
-              ),
+              style: build_Headings(),
               textAlign: TextAlign.center,
             ),
             SizedBox(
@@ -36,13 +39,16 @@ class Body extends StatelessWidget {
             PinCodeTextField(
               appContext: context,
               length: 6,
-              onChanged: (value) {},
+              onChanged: (value) {
+                received_OTP = value;
+              },
               textStyle: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w700,
                 fontFamily: "Roboto",
                 fontSize: 30,
               ),
+
               showCursor: false,
               pinTheme: PinTheme(
                 shape: PinCodeFieldShape.box,
@@ -59,7 +65,7 @@ class Body extends StatelessWidget {
               height: getproportionatescreenheight(30),
             ),
             Text(
-              "OTP has been sent to your mobile number entered previuosly!",
+              "OTP has been sent to your mobile number entered $PhoneNumber",
               style: TextStyle(
                 color: Colors.green,
                 fontWeight: FontWeight.bold,
@@ -117,7 +123,21 @@ class Body extends StatelessWidget {
               height: getproportionatescreenheight(40),
             ),
             buildCommon_button(
-              onpressed: () {},
+              onpressed: () async{
+                // Create a PhoneAuthCredential with the code
+                // print(verify);
+                try{
+                  PhoneAuthCredential credential = PhoneAuthProvider.credential(
+                      verificationId: verify, smsCode: received_OTP);
+
+                  // Sign the user in (or link) with the credential
+                  await _auth.signInWithCredential(credential);
+                  Navigator.pushNamed(context, LoginSuccess.id);
+                }
+                catch(e){
+                  print("Wrong OTP!");
+                }
+              },
               content: "Verify",
               width: 590,
               height: 60,

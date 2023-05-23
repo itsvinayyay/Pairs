@@ -23,6 +23,7 @@ class _Registration_FormState extends State<Registration_Form> {
   late String first_name;
   late String last_name;
   late String phone;
+  String countrycode = "+91";
 
   @override
   void initState() {
@@ -101,12 +102,23 @@ class _Registration_FormState extends State<Registration_Form> {
               await _firestore.set({
                 'First_Name': first_name,
                 'Last_Name': last_name,
-                'Phone': phone,
+                'Phone': (countrycode + phone),
               });
+              await _auth.verifyPhoneNumber(
+                phoneNumber: (countrycode + phone),
+                verificationCompleted: (PhoneAuthCredential credential) {},
+                verificationFailed: (FirebaseAuthException e) {},
+                codeSent: (String verificationId, int? resendToken) {
+                  print(verificationId);
+                  Navigator.pushNamed(context, OTP_Screen.id, arguments: phoneNumber_arg(phoneNumber: phone, verificationID: verificationId),);
+
+                },
+                codeAutoRetrievalTimeout: (String verificationId) {},
+              );
               print(first_name);
               print(last_name);
               print(phone);
-              Navigator.pushNamed(context, OTP_Screen.id);
+
             },
             content: "Continue",
             height: 60,
