@@ -19,7 +19,7 @@ class Body extends StatelessWidget {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
               //TODO: can be implemented by this too!
@@ -31,27 +31,36 @@ class Body extends StatelessWidget {
               //   ),
               // ),
               // width: MediaQuery.of(context).size.width,
-              height: getproportionatescreenheight(400),
+              height: getproportionatescreenheight(350),
               child: AspectRatio(
                 aspectRatio: 1,
                 child: Image.asset(
-                  "assets/images/5.png",
+                  "assets/images/ls.png",
                   fit: BoxFit.fitWidth,
                 ),
               ),
             ),
-            SizedBox(
-              height: getproportionatescreenheight(140),
-            ),
-            Text(
-              "You've been successfully logged in!\n"
-              "Proceed further",
-              style: TextStyle(
-                  color: Colors.green,
-                  fontSize: 20,
-                  fontFamily: "JosefinSans",
-                  fontWeight: FontWeight.w800),
-              textAlign: TextAlign.center,
+            // SizedBox(
+            //   height: getproportionatescreenheight(50),
+            // ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  width: getproportionatescreenwidth(500),
+                  height: getproportionatescreenheight(100),
+                  child: Text(
+                    "You've been successfully logged in!\n"
+                    "Proceed further",
+                    style: TextStyle(
+                        color: Colors.green,
+                        fontSize: 20,
+                        fontFamily: "JosefinSans-Regular",
+                        fontWeight: FontWeight.w700),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
             ),
             buildCommon_button(
               onpressed: () {

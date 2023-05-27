@@ -4,29 +4,66 @@ import 'package:pairs/Screen_Config.dart';
 import 'package:pairs/Constants.dart';
 import 'package:pairs/Common_Button.dart';
 import 'package:pairs/Screens/LoginSuccessScreen/Succeess_Screen.dart';
+import 'package:pairs/Screens/SignInScreen/SignInScreen_Errors.dart';
 import 'package:pairs/Screens/SignUpScreen/SignUp_Screen.dart';
 import 'SignInScreen_Socials.dart';
 import 'SignIn_Divider.dart';
 
 
-class SignInScreen_Form extends StatelessWidget {
+class SignInScreen_Form extends StatefulWidget {
   const SignInScreen_Form({
     super.key,
   });
 
   @override
+  State<SignInScreen_Form> createState() => _SignInScreen_FormState();
+}
+
+class _SignInScreen_FormState extends State<SignInScreen_Form> {
+  @override
   Widget build(BuildContext context) {
-   late String received_email;
-   late String received_password;
+    final _formkey = GlobalKey<FormState>();
+    final List<String> Errors = [];
+   late String? received_email;
+   late String? received_password;
     final _auth = FirebaseAuth.instance;
 
     return Form(
+      key: _formkey,
       child: Column(
         children: [
           TextFormField(
-            onChanged: (value){
-              received_email = value;
+            onSaved: (newvalue) {
+              received_email = newvalue;
             },
+            onChanged: (value) {
+              if (value.isNotEmpty && Errors.contains(kemailnullerror)) {
+                setState(() {
+                  Errors.remove(kemailnullerror);
+                });
+              } else if (value.contains("@") && Errors.contains(kvalidemailerror)) {
+                setState(() {
+                  Errors.remove(kvalidemailerror);
+                });
+              }
+              return null;
+            },
+            validator: (value) {
+              if (value!.isEmpty && !Errors.contains(kemailnullerror)) {
+                setState(() {
+                  Errors.add(kemailnullerror);
+                });
+              } else if (value != null &&
+                  !value.contains("@") &&
+                  !Errors.contains(kvalidemailerror) &&
+                  !Errors.contains(kemailnullerror)) {
+                setState(() {
+                  Errors.add(kvalidemailerror);
+                });
+              }
+              return null;
+            },
+            keyboardType: TextInputType.emailAddress,
             autofocus: false,
             style: TextStyle(
               fontSize: 20,
@@ -39,9 +76,43 @@ class SignInScreen_Form extends StatelessWidget {
             height: getproportionatescreenheight(20),
           ),
           TextFormField(
-            onChanged: (value){
-              received_password = value;
+            onSaved: (newvalue) {
+              received_password = newvalue;
             },
+            onChanged: (value) {
+              if (value != null &&
+                  value.isNotEmpty &&
+                  Errors.contains(knullpasserror)) {
+                setState(() {
+                  Errors.remove(knullpasserror);
+                });
+              } else if (value != null &&
+                  value.length > 6 &&
+                  Errors.contains(kshortpass)) {
+                setState(() {
+                  Errors.remove(kshortpass);
+                });
+              }
+              return null;
+            },
+            validator: (value) {
+              if (value != null &&
+                  value.isEmpty &&
+                  !Errors.contains(knullpasserror)) {
+                setState(() {
+                  Errors.add(knullpasserror);
+                });
+              } else if (value != null &&
+                  value.length < 6 &&
+                  !Errors.contains(kshortpass) &&
+                  !Errors.contains(knullpasserror)) {
+                setState(() {
+                  Errors.add(kshortpass);
+                });
+              }
+              return null;
+            },
+            obscureText: true,
             autofocus: false,
             style: TextStyle(
               fontSize: 20,
@@ -66,6 +137,7 @@ class SignInScreen_Form extends StatelessWidget {
                   fontFamily: "Roboto-Medium",
                 ),
               ),
+              FormErrors(Errors: Errors),
               SizedBox(
                 width: getproportionatescreenwidth(10),
               ),
@@ -76,33 +148,21 @@ class SignInScreen_Form extends StatelessWidget {
           ),
           buildCommon_button(
             onpressed: () async{
-
-              try{
-                final newuser = await _auth.signInWithEmailAndPassword(email: received_email, password: received_password);
-                if(newuser != null){
-                  Navigator.pushNamed(context, LoginSuccess.id);
+              if (_formkey.currentState!.validate()) {
+                _formkey.currentState!.save();
+                if (Errors.isEmpty) {
+                  try{
+                    final newuser = await _auth.signInWithEmailAndPassword(email: received_email!, password: received_password!);
+                    if(newuser != null){
+                      Navigator.pushNamed(context, LoginSuccess.id);
+                    }
+                  }
+                  catch(exception){
+                    print(exception);
+                  }
                 }
               }
-              catch(exception){
-                print(exception);
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('Sign In Error'),
-                      content: Text('${exception.toString()}'),
-                      actions: [
-                        TextButton(
-                          child: Text('OK'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
-                    );
-                  },
-                );
-              }
+
             },
             content: "Log In",
             height: 60,
