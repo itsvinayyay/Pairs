@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:pairs/Screens/LoginSuccessScreen/Succeess_Screen.dart';
 import '../../Common_Button.dart';
 import '../../Constants.dart';
 import '../../Screen_Config.dart';
@@ -40,6 +41,7 @@ class _Registration_FormState extends State<Registration_Form> {
         LoggedInuser = user;
         print(LoggedInuser?.email);
         _firestore = FirebaseFirestore.instance.collection("UserData").doc(LoggedInuser?.uid);
+        print(LoggedInuser?.uid);
       }
     }
 
@@ -98,33 +100,29 @@ class _Registration_FormState extends State<Registration_Form> {
           SizedBox(
             height: getproportionatescreenheight(40),
           ),
-          buildCommon_button(
-            onpressed: () async{
-              await _firestore.set({
-                'First_Name': first_name,
-                'Last_Name': last_name,
-                'Phone': (countrycode + phone),
-              });
-              await _auth.verifyPhoneNumber(
-                phoneNumber: (countrycode + phone),
-                verificationCompleted: (PhoneAuthCredential credential) {},
-                verificationFailed: (FirebaseAuthException e) {},
-                codeSent: (String verificationId, int? resendToken) {
-                  print(verificationId);
-                  Navigator.pushNamed(context, OTP_Screen.id, arguments: phoneNumber_arg(phoneNumber: phone, verificationID: verificationId),);
+          customButton(onPressed: () async{
+            await _firestore.set({
+              'First_Name': first_name,
+              'Last_Name': last_name,
+              'Phone': (countrycode + phone),
+            });
+            // await _auth.verifyPhoneNumber(
+            //   phoneNumber: (countrycode + phone),
+            //   verificationCompleted: (PhoneAuthCredential credential) {},
+            //   verificationFailed: (FirebaseAuthException e) {},
+            //   codeSent: (String verificationId, int? resendToken) {
+            //     print(verificationId);
+            //     Navigator.pushNamed(context, OTP_Screen.id, arguments: phoneNumber_arg(phoneNumber: phone, verificationID: verificationId),);
+            //
+            //   },
+            //   codeAutoRetrievalTimeout: (String verificationId) {},
+            // );
+            print(first_name);
+            print(last_name);
+            print(phone);
+            Navigator.pushNamed(context, LoginSuccess.id);
 
-                },
-                codeAutoRetrievalTimeout: (String verificationId) {},
-              );
-              print(first_name);
-              print(last_name);
-              print(phone);
-
-            },
-            content: "Continue",
-            height: 60,
-            width: 590,
-          ),
+          }, title: "Continue"),
         ],
       ),
     );

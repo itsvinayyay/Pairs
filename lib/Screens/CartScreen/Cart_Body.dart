@@ -5,12 +5,20 @@ import 'package:pairs/Products_Model.dart';
 import 'package:pairs/Screen_Config.dart';
 import 'Cart_Card.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    late String User_ID;
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+
+  late String User_ID;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
     User? current_user = FirebaseAuth.instance.currentUser;
 
     if(current_user!=null){
@@ -19,9 +27,12 @@ class Body extends StatelessWidget {
       print(User_ID);
     }
     else{
+      User_ID = "error!";
       print("No User Signed In!");
     }
-
+  }
+  @override
+  Widget build(BuildContext context) {
 
     return Padding(
       padding: EdgeInsets.symmetric(

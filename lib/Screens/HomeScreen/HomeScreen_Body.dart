@@ -1,10 +1,33 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pairs/Screen_Config.dart';
 import 'HomeScreen_ProductCarousel.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  late String User_ID;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    User? current_user = FirebaseAuth.instance.currentUser;
+
+    if(current_user!=null){
+      User_ID = current_user.uid;
+
+      print(User_ID);
+    }
+    else{
+      User_ID = "error!";
+      print("No User Signed In!");
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(

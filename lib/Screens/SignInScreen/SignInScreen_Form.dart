@@ -9,7 +9,6 @@ import 'package:pairs/Screens/SignUpScreen/SignUp_Screen.dart';
 import 'SignInScreen_Socials.dart';
 import 'SignIn_Divider.dart';
 
-
 class SignInScreen_Form extends StatefulWidget {
   const SignInScreen_Form({
     super.key,
@@ -24,8 +23,8 @@ class _SignInScreen_FormState extends State<SignInScreen_Form> {
   Widget build(BuildContext context) {
     final _formkey = GlobalKey<FormState>();
     final List<String> Errors = [];
-   late String? received_email;
-   late String? received_password;
+    late String? received_email;
+    late String? received_password;
     final _auth = FirebaseAuth.instance;
 
     return Form(
@@ -41,7 +40,8 @@ class _SignInScreen_FormState extends State<SignInScreen_Form> {
                 setState(() {
                   Errors.remove(kemailnullerror);
                 });
-              } else if (value.contains("@") && Errors.contains(kvalidemailerror)) {
+              } else if (value.contains("@") &&
+                  Errors.contains(kvalidemailerror)) {
                 setState(() {
                   Errors.remove(kvalidemailerror);
                 });
@@ -146,28 +146,24 @@ class _SignInScreen_FormState extends State<SignInScreen_Form> {
           SizedBox(
             height: getproportionatescreenheight(40),
           ),
-          buildCommon_button(
-            onpressed: () async{
-              if (_formkey.currentState!.validate()) {
-                _formkey.currentState!.save();
-                if (Errors.isEmpty) {
-                  try{
-                    final newuser = await _auth.signInWithEmailAndPassword(email: received_email!, password: received_password!);
-                    if(newuser != null){
-                      Navigator.pushNamed(context, LoginSuccess.id);
+          customButton(
+              onPressed: () async {
+                if (_formkey.currentState!.validate()) {
+                  _formkey.currentState!.save();
+                  if (Errors.isEmpty) {
+                    try {
+                      final newuser = await _auth.signInWithEmailAndPassword(
+                          email: received_email!, password: received_password!);
+                      if (newuser != null) {
+                        Navigator.pushNamed(context, LoginSuccess.id);
+                      }
+                    } catch (exception) {
+                      print(exception);
                     }
                   }
-                  catch(exception){
-                    print(exception);
-                  }
                 }
-              }
-
-            },
-            content: "Log In",
-            height: 60,
-            width: 590,
-          ),
+              },
+              title: "Log In"),
           SizedBox(
             height: getproportionatescreenheight(30),
           ),
@@ -211,4 +207,3 @@ class _SignInScreen_FormState extends State<SignInScreen_Form> {
     );
   }
 }
-

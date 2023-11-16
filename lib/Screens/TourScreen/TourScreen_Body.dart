@@ -126,12 +126,15 @@ class _BodyState extends State<Body> {
         FadeinTransitions(
           leftP: 50,
           rightP: 50,
-          passedchild: buildCommon_button(onpressed: (){
-            Navigator.pushNamed(context, SignInScreen.id);
-          }, content: "Continue",),
+          passedchild: Center(
+            child: customButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, SignInScreen.id);
+                },
+                title: "Continue"),
+          ),
         ),
       ],
     );
   }
 }
-

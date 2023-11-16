@@ -62,18 +62,14 @@ class Body extends StatelessWidget {
                 ),
               ],
             ),
-            buildCommon_button(
-              onpressed: () {
-                Navigator.pushNamed(context, Bottom_Navigations.id);
-              },
-              content: "Proceed",
-              height: 60,
-              width: 590,
-            ),
+            customButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Bottom_Navigations.id);
+                },
+                title: "Proceed"),
             SizedBox(
               height: getproportionatescreenheight(40),
             ),
-
           ],
         ),
       ),

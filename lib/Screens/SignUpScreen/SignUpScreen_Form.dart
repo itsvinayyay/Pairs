@@ -169,27 +169,26 @@ class _SignUp_FormState extends State<SignUp_Form> {
           SizedBox(
             height: getproportionatescreenheight(40),
           ),
-          buildCommon_button(
-            onpressed: () async {
-              if (_formkey.currentState!.validate()) {
-                _formkey.currentState!.save();
-                if (Errors.isEmpty) {
-                  try {
-                    final newuser = await _auth.createUserWithEmailAndPassword(
-                        email: email!, password: ConfirmPassword!);
-                    if (newuser != null && Errors.isEmpty) {
-                      Navigator.pushNamed(context, RegistrationScreen.id);
+          customButton(
+              onPressed: () async {
+                if (_formkey.currentState!.validate()) {
+                  _formkey.currentState!.save();
+                  if (Errors.isEmpty) {
+                    try {
+                      final newuser =
+                          await _auth.createUserWithEmailAndPassword(
+                              email: email!, password: ConfirmPassword!);
+                      if (newuser != null && Errors.isEmpty) {
+                        print(_auth.currentUser?.uid);
+                        Navigator.pushNamed(context, RegistrationScreen.id);
+                      }
+                    } catch (e) {
+                      print(e);
                     }
-                  } catch (e) {
-                    print(e);
                   }
                 }
-              }
-            },
-            content: "Continue",
-            height: 60,
-            width: 590,
-          ),
+              },
+              title: "Continue"),
           SizedBox(
             height: getproportionatescreenheight(20),
           ),

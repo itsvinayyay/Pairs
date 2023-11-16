@@ -122,26 +122,21 @@ class Body extends StatelessWidget {
             SizedBox(
               height: getproportionatescreenheight(40),
             ),
-            buildCommon_button(
-              onpressed: () async{
-                // Create a PhoneAuthCredential with the code
-                // print(verify);
-                try{
-                  PhoneAuthCredential credential = PhoneAuthProvider.credential(
-                      verificationId: verify, smsCode: received_OTP);
+            customButton(onPressed: () async{
+              // Create a PhoneAuthCredential with the code
+              // print(verify);
+              try{
+                PhoneAuthCredential credential = PhoneAuthProvider.credential(
+                    verificationId: verify, smsCode: received_OTP);
 
-                  // Sign the user in (or link) with the credential
-                  await _auth.signInWithCredential(credential);
-                  Navigator.pushNamed(context, LoginSuccess.id);
-                }
-                catch(e){
-                  print("Wrong OTP!");
-                }
-              },
-              content: "Verify",
-              width: 590,
-              height: 60,
-            ),
+                // Sign the user in (or link) with the credential
+                await _auth.signInWithCredential(credential);
+                Navigator.pushNamed(context, LoginSuccess.id);
+              }
+              catch(e){
+                print("Wrong OTP!");
+              }
+            }, title: "Verify"),
           ],
         ),
       ),
